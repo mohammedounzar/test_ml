@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 def download_and_predict(user_id, input_features):
-    url = f"https://res.cloudinary.com/your_cloud_name/raw/upload/models/{user_id}.h5"
+    url = f"https://res.cloudinary.com/ddnkpgyqv/raw/upload/models/{user_id}.h5"
     r = requests.get(url)
     with open("temp_model.h5", "wb") as f:
         f.write(r.content)

@@ -1,0 +1,13 @@
+[
+    { "temperature": 36.5, "altitude": 210, "longitude": -7.5, "heart_beat": 85, "timestamp": "2025-04-17T10:00:00Z" },
+    { "temperature": 36.8, "altitude": 200, "longitude": -7.55, "heart_beat": 88, "timestamp": "2025-04-17T10:05:00Z" },
+    { "temperature": 37.0, "altitude": 190, "longitude": -7.60, "heart_beat": 92, "timestamp": "2025-04-17T10:10:00Z" },
+    { "temperature": 36.6, "altitude": 220, "longitude": -7.52, "heart_beat": 84, "timestamp": "2025-04-17T10:15:00Z" },
+    { "temperature": 37.1, "altitude": 185, "longitude": -7.61, "heart_beat": 95, "timestamp": "2025-04-17T10:20:00Z" },
+    { "temperature": 36.4, "altitude": 230, "longitude": -7.49, "heart_beat": 80, "timestamp": "2025-04-17T10:25:00Z" },
+    { "temperature": 36.9, "altitude": 195, "longitude": -7.58, "heart_beat": 90, "timestamp": "2025-04-17T10:30:00Z" },
+    { "temperature": 36.7, "altitude": 205, "longitude": -7.53, "heart_beat": 87, "timestamp": "2025-04-17T10:35:00Z" },
+    { "temperature": 36.3, "altitude": 240, "longitude": -7.47, "heart_beat": 78, "timestamp": "2025-04-17T10:40:00Z" },
+    { "temperature": 37.2, "altitude": 180, "longitude": -7.62, "heart_beat": 97, "timestamp": "2025-04-17T10:45:00Z" }
+  ]
+  
