@@ -3,9 +3,11 @@ from firebase_admin import credentials, firestore
 import numpy as np
 import tensorflow as tf
 import cloudinary
+from dotenv import load_dotenv
 import cloudinary.uploader
 import os
 import uuid
+from anomaly_utils import train_anomaly_model
 
 # --- Setup Firebase ---
 cred = credentials.Certificate("firebase-adminsdk.json")
@@ -13,10 +15,12 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # --- Setup Cloudinary ---
+load_dotenv()
+
 cloudinary.config(
-    cloud_name='ddnkpgyqv',
-    api_key='239272714559138',
-    api_secret='rX6yHtw3FBKh4LNn0pW86d6sz84'
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET")
 )
 
 def fetch_user_data(user_id):
@@ -29,15 +33,8 @@ def fetch_user_data(user_id):
     return records
 
 def train_model(records):
-    X = np.array([[r['temperature'], r['altitude'], r['longitude']] for r in records])
-    y = np.array([r['heart_beat'] for r in records])
 
-    model = tf.keras.Sequential([
-        tf.keras.layers.Dense(16, activation='relu', input_shape=(3,)),
-        tf.keras.layers.Dense(1)
-    ])
-    model.compile(optimizer='adam', loss='mse')
-    model.fit(X, y, epochs=5, verbose=0)
+    model = train_anomaly_model(records)
     return model
 
 def save_and_upload_model(model, user_id):

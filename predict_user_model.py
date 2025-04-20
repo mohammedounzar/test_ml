@@ -1,19 +1,21 @@
 import requests
-from tensorflow import keras
+import joblib
 import numpy as np
 import os
 
 def download_and_predict(user_id, input_features):
-    url = f"https://res.cloudinary.com/ddnkpgyqv/raw/upload/models/{user_id}.h5"
+    url = f"https://res.cloudinary.com/ddnkpgyqv/raw/upload/models/{user_id}.pkl"
     r = requests.get(url)
-    with open("temp_model.h5", "wb") as f:
+    with open("temp_model.pkl", "wb") as f:
         f.write(r.content)
 
-    model = keras.models.load_model("temp_model.h5")
-    os.remove("temp_model.h5")
+    model = joblib.load("temp_model.pkl")
+    os.remove("temp_model.pkl")
 
-    features = np.array(input_features).reshape(1, -1)  # e.g. [36.8, 215, -7.55]
+    features = np.array(input_features).reshape(1, -1)
     prediction = model.predict(features)
-    print(f"Predicted heart rate: {prediction[0][0]:.2f}")
+    return prediction[0]
 
-download_and_predict("user123", [36.8, 215, -7.55])
+# Example usage
+result = download_and_predict("user123", [36.8, 5.0, 90])
+print("Prediction:", "normal" if result == 1 else "not normal")
