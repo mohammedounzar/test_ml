@@ -31,6 +31,8 @@ CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
 CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
 CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
 
+
+# first api to use
 @app.route('/api/train', methods=['POST'])
 def train_model():
     """
@@ -111,6 +113,7 @@ def train_model():
             "message": "Error: " + str(e)
         }), 500
 
+#  second api to use
 @app.route('/api/predict', methods=['POST'])
 def predict():
     """
