@@ -88,8 +88,6 @@ def predict():
             cloudinary_api_secret=CLOUDINARY_API_SECRET,
             sequence_length=sequence_length
         )
-
-        print(f"Prediction result for user {user_id}: {result}")
         
         if not result['success']:
             return jsonify({
